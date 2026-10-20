@@ -540,9 +540,10 @@ final class PetController: NSObject {
             } else {
                 position = dest
                 if notificationUntil == .distantPast {
-                    notificationUntil = Date().addingTimeInterval(12)
+                    // Keep the alert visible until the user dismisses it or opens the work panel.
+                    notificationUntil = .distantFuture
                     showNotificationBubble()
-                } else if Date() > notificationUntil { dismissNotification() }
+                }
             }
             if mode == "notify" && notificationUntil != .distantPast {
                 positionNotificationBubble()
